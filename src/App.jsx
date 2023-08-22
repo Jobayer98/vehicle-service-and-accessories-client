@@ -4,8 +4,6 @@ import Fuel from "./pages/Fuel/Fuel";
 const App = () => {
   return (
     <div>
-      <Navigation />
-      <Fuel />
     </div>
   );
 };
