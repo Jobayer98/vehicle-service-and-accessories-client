@@ -1,12 +1,5 @@
 const BookingRow = ({ booking, handleDelete }) => {
-  const {
-    _id,
-    date,
-    serviceName,
-    servicePrice,
-    serviceDuration,
-    status = "pending",
-  } = booking;
+  const { _id, date, serviceName, servicePrice, status = "pending" } = booking;
 
   return (
     <tr>
