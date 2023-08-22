@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import AuthContext from "../../../context/AuthContext";
 
 const DropDown = () => {
-  const { logout } = useContext(AuthContext);
+  const { logout, user } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -14,7 +14,12 @@ const DropDown = () => {
     <div className="dropdown dropdown-end">
       <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
         <div className="w-10 rounded-full">
-          <img src="https://img.freepik.com/free-icon/man_318-233556.jpg" />
+          <img
+            src={
+              user.photo ||
+              "https://img.freepik.com/free-icon/man_318-233556.jpg"
+            }
+          />
         </div>
       </label>
       <ul
