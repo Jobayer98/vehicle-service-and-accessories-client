@@ -104,7 +104,7 @@ const ShoppingCart = () => {
                 <hr />
                 <div className="flex justify-between">
                   <p className="text-lg font-medium">Order total</p>
-                  <p>${totalPrice() + 5}</p>
+                  <p>${(totalPrice() + 5).toFixed(2)}</p>
                 </div>
               </div>
               <Link

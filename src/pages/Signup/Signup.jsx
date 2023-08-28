@@ -17,8 +17,10 @@ const SignUp = () => {
   const onSubmit = (data) => {
     createUser(data?.email, data?.password)
       .then((res) => {
-        console.log(res);
+        
         res.displayName = data.name;
+        res.role = "user";
+        console.log(res);
         navigate(from, { replace: true });
       })
       .catch(() => {

@@ -1,8 +1,5 @@
 import Banner from "../../../components/Banner/Banner";
 import Card from "../../../components/UI/Card/Card";
-import img from "../../../assets/images/services/1.jpg";
-import { useEffect, useState } from "react";
-import axios from "axios";
 import useFetch from "../../../hooks/useFecth";
 
 const BikeServicesPkg = () => {

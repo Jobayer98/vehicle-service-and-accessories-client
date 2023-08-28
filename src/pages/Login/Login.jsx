@@ -8,7 +8,7 @@ const Login = () => {
   const [error, setError] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
-  const { login, loginWithGoogle, loginWithFacebook } = useContext(AuthContext);
+  const { setUser, login, loginWithGoogle } = useContext(AuthContext);
 
   const { register, handleSubmit } = useForm();
 
@@ -18,7 +18,6 @@ const Login = () => {
     login(data.email, data.password)
       .then((res) => {
         setError(false);
-        console.log(res);
         navigate(from, { replace: true });
       })
       .catch((err) => {
@@ -27,30 +26,25 @@ const Login = () => {
   };
 
   // // login with google account
-  // const handleLoginGoogle = () => {
-  //   loginWithGoogle()
-  //     .then((res) => {
-  //       setError(false);
-  //       if (res?.user) {
-  //         notify();
-
-  //         const user = {
-  //           name: res.user.displayName,
-  //           email: res.user.email,
-  //         };
-  //         saveUser(user);
-  //         navigate(from, { replace: true });
-  //       }
-  //     })
-  //     .catch(() => {
-  //       setError(true);
-  //     });
-  // };
-
-  // // login with facebook account
-
-  // const handLoginFacebook = () => {
-  //   loginWithFacebook()
+  const handleLoginGoogle = () => {
+    loginWithGoogle()
+      .then((res) => {
+        setError(false);
+        if (res?.user) {
+          console.log(res.user);
+          const user = {
+            name: res.user.displayName,
+            email: res.user.email,
+            photo: res.user.photoURL,
+          };
+          setUser(user);
+          navigate(from, { replace: true });
+        }
+      })
+      .catch(() => {
+        setError(true);
+      });
+  };
 
   return (
     <div className="hero min-h-screen bg-base-200">
@@ -101,12 +95,19 @@ const Login = () => {
               </div>
             </form>
             <p className="my-4 text-center">
-              New to Car Doctors{" "}
+              New to here?
               <Link className="text-orange-600 font-bold" to="/signup">
                 Sign Up
               </Link>{" "}
             </p>
-            {/* <SocialLogin></SocialLogin> */}
+            <div className="text-center">
+              <button
+                className="border px-4 py-2 shadow-md rounded"
+                onClick={handleLoginGoogle}
+              >
+                Login with google
+              </button>
+            </div>
           </div>
         </div>
       </div>

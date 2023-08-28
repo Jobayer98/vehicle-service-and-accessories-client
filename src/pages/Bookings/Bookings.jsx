@@ -19,7 +19,6 @@ const Bookings = () => {
   }, [url]);
 
   const handleDelete = (id) => {
-    console.log(id);
     const proceed = confirm("Are You sure you want to delete");
     if (proceed) {
       fetch(`http://localhost:9000/my-bookings/${id}`, {
@@ -59,7 +58,7 @@ const Bookings = () => {
   };
 
   return (
-    <div className="container mx-auto mt-20">
+    <div className="container mx-auto mt-20 ml-5">
       {bookings.length > 0 ? (
         <>
           <p className="font-medium">My Bookings</p>

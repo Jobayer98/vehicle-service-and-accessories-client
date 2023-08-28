@@ -2,7 +2,7 @@ import TeamCard from "../../../components/UI/Card/TeamCard";
 import img from "../../../assets/images/team/1.jpg";
 
 const OurTeam = () => {
-  const arry = [1, 2, 3];
+  const arry = [{id: 1, name: "Alice"},{id: 2, name: "Bob"},{id: 3, name: "John"}];
   return (
     <div className="">
       <div className="flex flex-col justify-center items-center gap-2">
@@ -18,8 +18,8 @@ const OurTeam = () => {
       <div className="grid grid-cols-1 justify-center items-center md:grid-cols-2 lg:grid-cols-3 gap-6 mt-12 max-w-screen-xl">
         {arry.map((team) => (
           <TeamCard
-            key={team}
-            name={"Alice"}
+            key={team.id}
+            name={team.name}
             profession={"Engine Expert"}
             img={img}
           />

@@ -21,6 +21,7 @@ import MyCallService from "../pages/CallService/MyCallService";
 import ServiceDetails from "../pages/Services/ServiceDetails";
 import PaymentHistory from "../pages/Payment/PaymentHistory";
 import PaymentStatus from "../pages/Payment/PaymentStatus";
+import AddProductForm from "../pages/Admin/AddProductForm";
 
 const router = createBrowserRouter([
   {
@@ -120,6 +121,10 @@ const router = createBrowserRouter([
       {
         path: "Contact-us",
         element: <ContactUs />,
+      },
+      {
+        path: "admin/add-product",
+        element: <AddProductForm />,
       },
       {
         path: "login",

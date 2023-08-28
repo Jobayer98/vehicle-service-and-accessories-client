@@ -16,6 +16,7 @@ import {
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  console.log(user)
 
   // register new user
   const createUser = (email, password) => {
@@ -73,6 +74,7 @@ const AuthProvider = ({ children }) => {
 
   const authInfo = {
     user,
+    setUser,
     loading,
     login,
     createUser,

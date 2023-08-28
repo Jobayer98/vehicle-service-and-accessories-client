@@ -1,13 +1,13 @@
-import { useEffect, useState } from "react";
-// import { AuthContext } from "../../providers/AuthProvider";
+import { useContext, useEffect, useState } from "react";
 import BookingRow from "./BookingRow";
 import axios from "axios";
+import AuthContext from "../../context/AuthContext";
 
 const MyCallService = () => {
-  // const { user } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
   const [bookings, setBookings] = useState([]);
 
-  const url = `http://localhost:9000/my-service`;
+  const url = `http://localhost:9000/my-service?${user?.email}`;
   useEffect(() => {
     const getBookings = async () => {
       const res = await axios.get(url);
@@ -17,9 +17,9 @@ const MyCallService = () => {
     };
     getBookings();
   }, [url]);
+  console.log(bookings);
 
   const handleDelete = (id) => {
-    console.log(id);
     const proceed = confirm("Are You sure you want to delete");
     if (proceed) {
       fetch(`http://localhost:9000/my-service/${id}`, {
@@ -27,7 +27,6 @@ const MyCallService = () => {
       })
         .then((res) => res.json())
         .then((data) => {
-          console.log(data);
           if (data.deletedCount > 0) {
             alert("deleted successful");
             const remaining = bookings.filter((booking) => booking._id !== id);
@@ -60,7 +59,7 @@ const MyCallService = () => {
   };
 
   return (
-    <div className="container mx-auto mt-20">
+    <div className="container mx-auto mt-20 ml-5">
       {bookings.length > 0 ? (
         <>
           <h2 className="text-5xl">Your service: {bookings.length}</h2>
@@ -69,9 +68,8 @@ const MyCallService = () => {
               {/* head */}
               <thead>
                 <tr>
-                  <th>Service</th>
-                  <th>Date</th>
-                  <th>Price</th>
+                  <th>Actions</th>
+                  <th>Description</th>
                   <th>Status</th>
                 </tr>
               </thead>

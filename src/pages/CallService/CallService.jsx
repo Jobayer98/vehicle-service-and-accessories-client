@@ -1,5 +1,4 @@
-import { useContext, useState } from "react";
-import AuthContext from "../../context/AuthContext";
+import { useState } from "react";
 
 const CallService = () => {
   const [name, setName] = useState("");
@@ -8,7 +7,6 @@ const CallService = () => {
   const [address, setAddress] = useState("");
   const [vehicle, setVehicle] = useState("bike");
   const [description, setDescription] = useState("");
-  const { user } = useContext(AuthContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();
