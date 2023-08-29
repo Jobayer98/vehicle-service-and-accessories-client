@@ -1,59 +1,60 @@
 import React, { useEffect, useState } from 'react';
 
 const AddProductForm = () => {
-  const [productName, setProductName] = useState('');
+  const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [price, setPrice] = useState('');
   const [quantity, setQuantity] = useState('');
-  const [imageLink, setImageLink] = useState('');
+  const [image, setImage] = useState('');
   const [category, setCategory] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    useEffect(() => {
-      const addProudct = async () => {
-        const response = await fetch('http://localhost:9000/add-product', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            productName,
-            description,
-            price,
-            quantity,
-            imageLink,
-            category
-          })
-        });
-      }
-      addProudct();
-    }, [])
-
-    // Clear form fields
-    setProductName('');
-    setDescription('');
-    setPrice('');
-    setQuantity('');
-    setImageLink('');
-    setCategory('');
+        fetch('http://localhost:9000/product', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          name,
+          description,
+          price: Number(price),
+          quantity,
+          image,
+          category
+        })
+      }).then((res) => {
+        if (res.status === 201) {
+          alert("Product Added");
+          setName('');
+          setDescription('');
+          setPrice('');
+          setQuantity('');
+          setImage('');
+          setCategory('');
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    
   };
 
   return (
-    <div className="max-w-lg mx-auto mt-20 p-6 bg-white rounded-lg shadow-md">
+    <div className="max-w-lg mx-auto my-20 p-6 bg-white rounded-lg shadow-md">
       <h2 className="text-2xl font-semibold mb-4">Add New Product</h2>
       <form onSubmit={handleSubmit}>
         <div className="mb-4">
-          <label htmlFor="productName" className="block font-medium">
+          <label htmlFor="name" className="block font-medium">
             Product Name
           </label>
           <input
             type="text"
-            id="productName"
+            id="name"
             className="mt-1 p-2 border w-full rounded-md"
-            value={productName}
-            onChange={(e) => setProductName(e.target.value)}
+            value={name}
+            onChange={(e) => setName(e.target.value)}
             required
           />
         </div>
@@ -80,7 +81,6 @@ const AddProductForm = () => {
             value={price}
             onChange={(e) => setPrice(e.target.value)}
             required
-            min={1}
           />
         </div>
         <div className="mb-4">
@@ -99,7 +99,7 @@ const AddProductForm = () => {
         </div>
         <div className="mb-4">
           <label htmlFor="category" className="block font-medium">
-            Product Name
+            Category
           </label>
           <input
             type="text"
@@ -111,15 +111,15 @@ const AddProductForm = () => {
           />
         </div>
         <div className="mb-4">
-          <label htmlFor="imageLink" className="block font-medium">
+          <label htmlFor="image" className="block font-medium">
             Image Link
           </label>
           <input
             type="url"
-            id="imageLink"
+            id="image"
             className="mt-1 p-2 border w-full rounded-md"
-            value={imageLink}
-            onChange={(e) => setImageLink(e.target.value)}
+            value={image}
+            onChange={(e) => setImage(e.target.value)}
             required
           />
         </div>

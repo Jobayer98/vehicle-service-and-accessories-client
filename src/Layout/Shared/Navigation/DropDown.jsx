@@ -48,6 +48,11 @@ const DropDown = () => {
           </Link>
         </li>
         <li>
+          <Link to="/admin/add-product" className="drop-link">
+            Add Product
+          </Link>
+        </li>
+        <li>
           <button onClick={handleLogout} className="flex items-center gap-1">
             Logout
           </button>

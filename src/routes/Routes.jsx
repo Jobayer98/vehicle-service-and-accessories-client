@@ -124,7 +124,7 @@ const router = createBrowserRouter([
       },
       {
         path: "admin/add-product",
-        element: <AddProductForm />,
+        element: <PrivateRoute><AddProductForm /></PrivateRoute>,
       },
       {
         path: "login",

@@ -34,7 +34,7 @@ const ProductItem = () => {
           <div className="w-1/2 flex flex-col gap-3">
             <p className="text-gray-500">Product Name</p>
             <h1 className="text-3xl font-semibold">{product.name}</h1>
-            <div className="rating">
+            {/* <div className="rating">
               <input
                 type="radio"
                 name="rating-2"
@@ -68,7 +68,7 @@ const ProductItem = () => {
               />
 
               <p className="ml-6">4 Reviews</p>
-            </div>
+            </div> */}
             <p className="text-gray-700 my-3">{product.description}</p>
             <div className="divider"></div>
             <div className="flex  items-center justify-between">

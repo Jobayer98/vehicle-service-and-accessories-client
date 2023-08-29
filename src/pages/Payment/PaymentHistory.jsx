@@ -16,8 +16,6 @@ const PaymentHistory = () => {
       });
   }, [user]);
 
-  console.log(data);
-
   return (
     <div className="max-w-2xl mx-auto mt-32">
       <div className="overflow-x-auto my-12">

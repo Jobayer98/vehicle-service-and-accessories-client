@@ -1,8 +1,10 @@
 import TeamCard from "../../../components/UI/Card/TeamCard";
 import img from "../../../assets/images/team/1.jpg";
+import img2 from "../../../assets/images/team/2.jpg";
+import img3 from "../../../assets/images/team/3.jpg";
 
 const OurTeam = () => {
-  const arry = [{id: 1, name: "Alice"},{id: 2, name: "Bob"},{id: 3, name: "John"}];
+  const arry = [{id: 1, name: "Alice", imgURL: img},{id: 2, name: "Bob", imgURL: img2},{id: 3, name: "John", imgURL: img3}];
   return (
     <div className="">
       <div className="flex flex-col justify-center items-center gap-2">
@@ -21,7 +23,7 @@ const OurTeam = () => {
             key={team.id}
             name={team.name}
             profession={"Engine Expert"}
-            img={img}
+            img={team.imgURL}
           />
         ))}
       </div>
