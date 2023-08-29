@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 const AddProductForm = () => {
   const [productName, setProductName] = useState('');
@@ -6,19 +6,30 @@ const AddProductForm = () => {
   const [price, setPrice] = useState('');
   const [quantity, setQuantity] = useState('');
   const [imageLink, setImageLink] = useState('');
+  const [category, setCategory] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // You can perform further actions here, such as sending the data to an API
-    // For now, let's just log the form data
-    console.log({
-      productName,
-      description,
-      price,
-      quantity,
-      imageLink,
-    });
+    useEffect(() => {
+      const addProudct = async () => {
+        const response = await fetch('http://localhost:9000/add-product', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            productName,
+            description,
+            price,
+            quantity,
+            imageLink,
+            category
+          })
+        });
+      }
+      addProudct();
+    }, [])
 
     // Clear form fields
     setProductName('');
@@ -26,6 +37,7 @@ const AddProductForm = () => {
     setPrice('');
     setQuantity('');
     setImageLink('');
+    setCategory('');
   };
 
   return (
@@ -83,6 +95,19 @@ const AddProductForm = () => {
             onChange={(e) => setQuantity(e.target.value)}
             required
             min={1}
+          />
+        </div>
+        <div className="mb-4">
+          <label htmlFor="category" className="block font-medium">
+            Product Name
+          </label>
+          <input
+            type="text"
+            id="category"
+            className="mt-1 p-2 border w-full rounded-md"
+            value={category}
+            onChange={(e) => setCategory(e.target.value)}
+            required
           />
         </div>
         <div className="mb-4">
